@@ -3,280 +3,175 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Shiva Tipireddy — Résumé Router</title>
-<meta name="description" content="Shiva Tipireddy — MS CS @ UChicago. Route to the résumé built for your role: quant trading, fintech SWE, tech SWE, or ML research.">
+<title>Shiva Tipireddy</title>
+<meta name="description" content="Shiva Tipireddy — MS in Computer Science (AI) at the University of Chicago. Four résumés, one for each kind of role.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500&family=Inter:wght@400;500&display=swap" rel="stylesheet">
 <style>
   :root{
-    --ink: #0B1220;
-    --ink-raised: #131C30;
-    --ink-line: #223049;
-    --paper: #F2F5FA;
-    --fog: #A9B7CC;
-    --amber: #E8A33D;
-    --amber-dim: #7A5A25;
-    --signal: #5FB8B0;
+    --text: #0f172a;
+    --text-muted: #64748b;
+    --text-subtle: #94a3b8;
+    --border: #e5e7eb;
+    --border-strong: #d1d5db;
+    --accent: #2563eb;
+    --accent-hover: #1d4ed8;
+    --bg: #ffffff;
   }
 
   *{ box-sizing: border-box; }
-
   html{ scroll-behavior: smooth; }
 
   body{
     margin: 0;
-    background: var(--ink);
-    background-image:
-      radial-gradient(ellipse 900px 500px at 15% -10%, rgba(232,163,61,0.08), transparent 60%),
-      radial-gradient(ellipse 700px 500px at 100% 10%, rgba(95,184,176,0.06), transparent 60%);
-    color: var(--paper);
-    font-family: 'Inter', -apple-system, sans-serif;
-    line-height: 1.5;
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
     -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 
-  a{ color: inherit; }
-
   .wrap{
-    max-width: 780px;
+    max-width: 640px;
     margin: 0 auto;
     padding: 0 24px;
   }
 
+  a{ color: var(--accent); text-decoration: none; }
+  a:hover{ color: var(--accent-hover); text-decoration: underline; text-underline-offset: 3px; }
+
   :focus-visible{
-    outline: 2px solid var(--amber);
+    outline: 2px solid var(--accent);
     outline-offset: 3px;
     border-radius: 2px;
   }
 
-  /* ---- top bar ---- */
-  .topbar{
-    padding: 28px 0 0;
-  }
-  .prompt{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--fog);
-    display: flex;
-    align-items: center;
-    gap: 9px;
-  }
-  .dot{
-    width: 7px; height: 7px;
-    border-radius: 50%;
-    background: var(--signal);
-    box-shadow: 0 0 8px rgba(95,184,176,0.8);
-    flex-shrink: 0;
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .dot{ animation: pulse 2.4s ease-in-out infinite; }
-  }
-  @keyframes pulse{
-    0%,100%{ opacity: 1; }
-    50%{ opacity: 0.4; }
-  }
-
   /* ---- hero ---- */
   .hero{
-    padding: 64px 0 40px;
-    border-bottom: 1px solid var(--ink-line);
-  }
-  .eyebrow{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    color: var(--signal);
-    margin: 0 0 18px;
+    padding: 96px 0 56px;
   }
   h1{
-    font-family: 'Space Grotesk', sans-serif;
-    font-weight: 600;
-    font-size: clamp(32px, 5vw, 46px);
-    line-height: 1.12;
-    letter-spacing: -0.01em;
-    margin: 0 0 20px;
-    color: var(--paper);
+    font-family: 'Fraunces', Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: clamp(40px, 6vw, 56px);
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+    margin: 0 0 10px;
+    color: var(--text);
   }
-  h1 .accent{ color: var(--amber); }
-  .sub{
-    font-size: 16px;
-    color: var(--fog);
-    max-width: 54ch;
+  .credential{
+    font-size: 15px;
+    color: var(--text-muted);
     margin: 0 0 28px;
   }
-  .sub strong{ color: var(--paper); font-weight: 500; }
+  .bio{
+    font-size: 16px;
+    color: var(--text);
+    max-width: 58ch;
+    margin: 0 0 32px;
+  }
 
-  .links{
+  .contact{
     display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-  }
-  .pill{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 13px;
-    color: var(--fog);
-    text-decoration: none;
-    border: 1px solid var(--ink-line);
-    border-radius: 999px;
-    padding: 7px 15px;
-    transition: border-color 0.15s ease, color 0.15s ease;
-  }
-  .pill:hover{
-    border-color: var(--amber-dim);
-    color: var(--paper);
-  }
-
-  /* ---- routing table ---- */
-  .table-section{
-    padding: 44px 0 8px;
-  }
-  .table-head{
-    display: flex;
-    align-items: baseline;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-  .table-head h2{
-    font-family: 'IBM Plex Mono', monospace;
-    font-weight: 500;
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
-    color: var(--fog);
-    margin: 0;
-  }
-  .table-head span{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--ink-line);
-  }
-
-  .route{
-    border: 1px solid var(--ink-line);
-    background: var(--ink-raised);
-    border-radius: 10px;
-    padding: 20px 22px;
-    margin-bottom: 14px;
-    transition: border-color 0.15s ease, transform 0.15s ease;
-  }
-  .route:hover{
-    border-color: var(--amber-dim);
-  }
-  @media (prefers-reduced-motion: no-preference){
-    .route:hover{ transform: translateY(-1px); }
-  }
-
-  .match{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12.5px;
-    color: var(--signal);
-    margin: 0 0 10px;
-    word-break: break-word;
-  }
-  .match .op{ color: var(--fog); }
-  .match .target{ color: var(--amber); }
-
-  .route-body{
-    display: flex;
-    justify-content: space-between;
-    align-items: flex-end;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .route-title{
-    font-family: 'Space Grotesk', sans-serif;
-    font-size: 19px;
-    font-weight: 600;
-    margin: 0 0 6px;
-    color: var(--paper);
-  }
-  .route-desc{
+    gap: 24px;
     font-size: 14px;
-    color: var(--fog);
-    margin: 0;
-    max-width: 46ch;
-  }
-
-  .actions{
-    display: flex;
-    gap: 8px;
-    flex-shrink: 0;
-  }
-  .btn{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12.5px;
-    text-decoration: none;
-    padding: 9px 14px;
-    border-radius: 6px;
-    white-space: nowrap;
-    transition: background 0.15s ease, opacity 0.15s ease;
-  }
-  .btn-primary{
-    background: var(--amber);
-    color: #1A1204;
-    font-weight: 600;
-  }
-  .btn-primary:hover{ opacity: 0.88; }
-  .btn-ghost{
-    border: 1px solid var(--ink-line);
-    color: var(--fog);
-  }
-  .btn-ghost:hover{
-    border-color: var(--fog);
-    color: var(--paper);
-  }
-
-  /* ---- fallback / master ---- */
-  .fallback{
-    margin-top: 22px;
-    padding: 18px 22px;
-    border: 1px dashed var(--ink-line);
-    border-radius: 10px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 16px;
     flex-wrap: wrap;
   }
-  .fallback .match{ margin-bottom: 4px; }
-  .fallback p{
-    margin: 0;
-    font-size: 13.5px;
-    color: var(--fog);
+  .contact a{
+    color: var(--text);
+    border-bottom: 1px solid var(--border-strong);
+    padding-bottom: 2px;
+    transition: color 0.15s ease, border-color 0.15s ease;
+    text-decoration: none;
+  }
+  .contact a:hover{
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+  }
+
+  /* ---- section ---- */
+  .section{
+    padding: 24px 0 0;
+  }
+  .section-label{
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--text-subtle);
+    margin: 48px 0 24px;
+  }
+
+  .resume{
+    padding: 28px 0;
+    border-top: 1px solid var(--border);
+  }
+  .resume:last-of-type{
+    border-bottom: 1px solid var(--border);
+  }
+
+  .resume-title{
+    font-family: 'Fraunces', Georgia, serif;
+    font-weight: 500;
+    font-size: 22px;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+    margin: 0 0 6px;
+    color: var(--text);
+  }
+  .resume-desc{
+    font-size: 15px;
+    color: var(--text-muted);
+    margin: 0 0 14px;
+    max-width: 56ch;
+    line-height: 1.55;
+  }
+  .resume-actions{
+    display: flex;
+    gap: 22px;
+    font-size: 14px;
+  }
+  .resume-actions a{
+    color: var(--accent);
+    font-weight: 500;
+  }
+
+  /* ---- master ---- */
+  .master{
+    margin-top: 40px;
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+  .master a{
+    color: var(--text);
+    border-bottom: 1px solid var(--border-strong);
+    padding-bottom: 2px;
+    transition: color 0.15s, border-color 0.15s;
+  }
+  .master a:hover{
+    color: var(--accent);
+    border-bottom-color: var(--accent);
+    text-decoration: none;
   }
 
   /* ---- footer ---- */
   footer{
-    margin-top: 56px;
-    padding: 26px 0 60px;
-    border-top: 1px solid var(--ink-line);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 12px;
-  }
-  footer p{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--ink-line);
-    margin: 0;
-  }
-  .status{
-    font-family: 'IBM Plex Mono', monospace;
-    font-size: 12px;
-    color: var(--fog);
-    display: flex;
-    align-items: center;
-    gap: 7px;
+    margin-top: 96px;
+    padding: 32px 0 80px;
+    border-top: 1px solid var(--border);
+    font-size: 13px;
+    color: var(--text-subtle);
   }
 
-  @media (max-width: 560px){
-    .route-body{ flex-direction: column; align-items: flex-start; }
-    .actions{ width: 100%; }
-    .btn{ flex: 1; text-align: center; }
-    .fallback{ flex-direction: column; align-items: flex-start; }
+  @media (max-width: 520px){
+    .hero{ padding: 64px 0 40px; }
+    .contact{ gap: 18px; }
+    .resume-actions{ gap: 18px; }
   }
 </style>
 </head>
@@ -284,95 +179,61 @@
 
 <div class="wrap">
 
-  <div class="topbar">
-    <div class="prompt"><span class="dot"></span>shiva@resumes:~$ whoami</div>
-  </div>
-
   <header class="hero">
-    <p class="eyebrow">résumé router · v1</p>
-    <h1>Route the right résumé<br>to the right <span class="accent">reader.</span></h1>
-    <p class="sub"><strong>Shiva Tipireddy</strong> — MS in Computer Science (AI) at the University of Chicago. Background spanning quantitative trading, systems &amp; infrastructure engineering, and applied ML research. Four résumés, one for each kind of role — pick the one that matches what you're hiring for.</p>
-    <div class="links">
-      <a class="pill" href="mailto:shivatippireddy@gmail.com">email</a>
-      <a class="pill" href="https://www.linkedin.com/in/tipireddy/" target="_blank" rel="noopener">linkedin</a>
-      <a class="pill" href="https://github.com/t-srk" target="_blank" rel="noopener">github</a>
+    <h1>Shiva Tipireddy</h1>
+    <p class="credential">MS Computer Science (AI) · University of Chicago</p>
+    <p class="bio">My background spans quantitative trading, systems and infrastructure engineering, and applied ML research. Below are four résumés — one for each kind of role. Pick the one that matches what you're hiring for.</p>
+    <div class="contact">
+      <a href="mailto:shivatippireddy@gmail.com">email</a>
+      <a href="https://www.linkedin.com/in/tipireddy/" target="_blank" rel="noopener">linkedin</a>
+      <a href="https://github.com/t-srk" target="_blank" rel="noopener">github</a>
     </div>
   </header>
 
-  <section class="table-section">
-    <div class="table-head">
-      <h2>routing table</h2>
-      <span>4 routes</span>
-    </div>
+  <section class="section">
+    <p class="section-label">Résumés</p>
 
-    <div class="route">
-      <p class="match"><span class="op">role.match(</span>quant, trading, market-making<span class="op">)</span> <span class="op">→</span> <span class="target">quant_r2</span></p>
-      <div class="route-body">
-        <div>
-          <p class="route-title">Quant Trader / Researcher</p>
-          <p class="route-desc">Desk-specific: vol surfaces, autotrader tuning, RV/IV signals, LOB engine &amp; arbitrage projects.</p>
-        </div>
-        <div class="actions">
-          <a class="btn btn-ghost" href="https://docs.google.com/document/d/1aWWNX7bI2ZkGq6YzwX_3SEZ-LRSLGXqKTbdpr3HJguA/edit" target="_blank" rel="noopener">view doc</a>
-          <a class="btn btn-primary" href="https://docs.google.com/document/d/1aWWNX7bI2ZkGq6YzwX_3SEZ-LRSLGXqKTbdpr3HJguA/export?format=pdf" target="_blank" rel="noopener">download pdf</a>
-        </div>
+    <article class="resume">
+      <h2 class="resume-title">Quant Trader / Researcher</h2>
+      <p class="resume-desc">For desk roles — I lead with vol surfaces, autotrader tuning, RV/IV signals, and my LOB engine and arbitrage projects.</p>
+      <div class="resume-actions">
+        <a href="https://docs.google.com/document/d/1aWWNX7bI2ZkGq6YzwX_3SEZ-LRSLGXqKTbdpr3HJguA/edit" target="_blank" rel="noopener">View doc</a>
+        <a href="https://docs.google.com/document/d/1aWWNX7bI2ZkGq6YzwX_3SEZ-LRSLGXqKTbdpr3HJguA/export?format=pdf" target="_blank" rel="noopener">Download PDF</a>
       </div>
-    </div>
+    </article>
 
-    <div class="route">
-      <p class="match"><span class="op">role.match(</span>fintech, quant-dev<span class="op">)</span> <span class="op">→</span> <span class="target">swe_q1</span></p>
-      <div class="route-body">
-        <div>
-          <p class="route-title">Quant Developer / Fintech SWE</p>
-          <p class="route-desc">Bridges trading domain fluency with software engineering — for firms that want both.</p>
-        </div>
-        <div class="actions">
-          <a class="btn btn-ghost" href="https://docs.google.com/document/d/1CW3jFtjJx0irKW4xIKRWqKyug3FinPvvsRTN2nBqTV8/edit" target="_blank" rel="noopener">view doc</a>
-          <a class="btn btn-primary" href="https://docs.google.com/document/d/1CW3jFtjJx0irKW4xIKRWqKyug3FinPvvsRTN2nBqTV8/export?format=pdf" target="_blank" rel="noopener">download pdf</a>
-        </div>
+    <article class="resume">
+      <h2 class="resume-title">Quant Developer / Fintech SWE</h2>
+      <p class="resume-desc">Where I bridge my trading domain fluency with my software engineering work — for firms that want both.</p>
+      <div class="resume-actions">
+        <a href="https://docs.google.com/document/d/1CW3jFtjJx0irKW4xIKRWqKyug3FinPvvsRTN2nBqTV8/edit" target="_blank" rel="noopener">View doc</a>
+        <a href="https://docs.google.com/document/d/1CW3jFtjJx0irKW4xIKRWqKyug3FinPvvsRTN2nBqTV8/export?format=pdf" target="_blank" rel="noopener">Download PDF</a>
       </div>
-    </div>
+    </article>
 
-    <div class="route">
-      <p class="match"><span class="op">role.match(</span>swe, tech, generic<span class="op">)</span> <span class="op">→</span> <span class="target">swe_s1</span></p>
-      <div class="route-body">
-        <div>
-          <p class="route-title">AI Engineer / SWE (Generic Tech)</p>
-          <p class="route-desc">Broad software engineering positioning for tech companies outside of fintech.</p>
-        </div>
-        <div class="actions">
-          <a class="btn btn-ghost" href="https://docs.google.com/document/d/1pJeEzl80o9TVK9luFNPL72oYMHX0YSA4lYEp-Iw-JFw/edit" target="_blank" rel="noopener">view doc</a>
-          <a class="btn btn-primary" href="https://docs.google.com/document/d/1pJeEzl80o9TVK9luFNPL72oYMHX0YSA4lYEp-Iw-JFw/export?format=pdf" target="_blank" rel="noopener">download pdf</a>
-        </div>
+    <article class="resume">
+      <h2 class="resume-title">AI Engineer / SWE</h2>
+      <p class="resume-desc">My broad software engineering positioning for tech companies outside of fintech.</p>
+      <div class="resume-actions">
+        <a href="https://docs.google.com/document/d/1pJeEzl80o9TVK9luFNPL72oYMHX0YSA4lYEp-Iw-JFw/edit" target="_blank" rel="noopener">View doc</a>
+        <a href="https://docs.google.com/document/d/1pJeEzl80o9TVK9luFNPL72oYMHX0YSA4lYEp-Iw-JFw/export?format=pdf" target="_blank" rel="noopener">Download PDF</a>
       </div>
-    </div>
+    </article>
 
-    <div class="route">
-      <p class="match"><span class="op">role.match(</span>ml, research, applied-ai<span class="op">)</span> <span class="op">→</span> <span class="target">ml_a1</span></p>
-      <div class="route-body">
-        <div>
-          <p class="route-title">ML / Research</p>
-          <p class="route-desc">Leads with research (UIUC CV work) plus LLM fine-tuning, RAG, and multi-agent projects.</p>
-        </div>
-        <div class="actions">
-          <a class="btn btn-ghost" href="https://docs.google.com/document/d/1LdYSe2Sm38G_xNWBDfOiePo5r-HQMpvrAYkbJ0GpnPE/edit" target="_blank" rel="noopener">view doc</a>
-          <a class="btn btn-primary" href="https://docs.google.com/document/d/1LdYSe2Sm38G_xNWBDfOiePo5r-HQMpvrAYkbJ0GpnPE/export?format=pdf" target="_blank" rel="noopener">download pdf</a>
-        </div>
+    <article class="resume">
+      <h2 class="resume-title">ML / Research</h2>
+      <p class="resume-desc">I lead with my research (UIUC computer vision work) plus my LLM fine-tuning, RAG, and multi-agent projects.</p>
+      <div class="resume-actions">
+        <a href="https://docs.google.com/document/d/1LdYSe2Sm38G_xNWBDfOiePo5r-HQMpvrAYkbJ0GpnPE/edit" target="_blank" rel="noopener">View doc</a>
+        <a href="https://docs.google.com/document/d/1LdYSe2Sm38G_xNWBDfOiePo5r-HQMpvrAYkbJ0GpnPE/export?format=pdf" target="_blank" rel="noopener">Download PDF</a>
       </div>
-    </div>
+    </article>
 
-    <div class="fallback">
-      <div>
-        <p class="match"><span class="op">default →</span> <span class="target">master</span></p>
-        <p>Unsure which fits? The master résumé is the source of truth all four routes are derived from.</p>
-      </div>
-      <a class="btn btn-ghost" href="https://docs.google.com/document/d/1HTrf1bq_PTgw4W_aQKSKr66azMPjzF5yYmL71wQjBg8/edit" target="_blank" rel="noopener">view master →</a>
-    </div>
+    <p class="master">Not sure which fits? My <a href="https://docs.google.com/document/d/1HTrf1bq_PTgw4W_aQKSKr66azMPjzF5yYmL71wQjBg8/edit" target="_blank" rel="noopener">master résumé</a> is the source of truth I derive all four from.</p>
   </section>
 
   <footer>
-    <p>built with claude code · updated july 2026</p>
-    <div class="status"><span class="dot"></span>full portfolio — in progress</div>
+    Updated July 2026.
   </footer>
 
 </div>
