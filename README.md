@@ -1,34 +1,25 @@
 # Résumé Router
 
-A single-page site that routes visitors to the right résumé for the role they're hiring for. v1: static HTML, links straight out to the live Google Docs (and their auto-generated PDF exports), so the site never goes stale when a doc gets edited.
+Single-page landing site that routes visitors to the right résumé for the role they're hiring for. One `index.html`, no build step; links go straight out to the live Google Docs (and their `/export?format=pdf` variants) so the site never goes stale when a doc gets edited.
 
-## Deploy to GitHub Pages (free)
+**Live:** https://resume-router.pages.dev/
 
-**Option A — user site (`yourname.github.io`), if you don't already have one:**
-```bash
-# create a new repo on GitHub named exactly: <your-username>.github.io
-git init
-git add index.html README.md
-git commit -m "resume router v1"
-git branch -M main
-git remote add origin https://github.com/<your-username>/<your-username>.github.io.git
-git push -u origin main
-```
-Live at `https://<your-username>.github.io` within a minute or two, no further config needed.
+## Hosting
 
-**Option B — project site (e.g. `yourname.github.io/resume`), if you want to keep it separate from a future portfolio:**
-```bash
-# create a repo, any name, e.g. "resume-router"
-git init
-git add index.html README.md
-git commit -m "resume router v1"
-git branch -M main
-git remote add origin https://github.com/<your-username>/resume-router.git
-git push -u origin main
-```
-Then in the repo: **Settings → Pages → Source → Deploy from a branch → `main` / `/ (root)` → Save.**
-Live at `https://<your-username>.github.io/resume-router` within a minute or two.
+Deployed on **Cloudflare Pages**. Any push to `main` auto-deploys in ~10 seconds.
 
-## When you're ready for v2
+- Build command: *(empty)*
+- Build output directory: `/`
+- Framework preset: `None`
 
-The routing-table structure here is meant to be a landing layer in front of a fuller portfolio later — same visual language (routes → destinations) could extend naturally into a timeline of your journey (IIT Madras → IMC → UIUC/TTIC research → UChicago → CHPC) without needing a redesign.
+The project was originally set up on GitHub Pages but migrated after persistent Actions-runner failures. Don't re-enable GitHub Pages.
+
+## Editing
+
+Edit `index.html` directly. Commit and push — Cloudflare picks up the change automatically.
+
+The résumés themselves are **Google Docs**, not files in this repo. Their sharing must stay set to "Anyone with the link → Viewer" or the view/PDF buttons will 403.
+
+## See also
+
+- [`PLANNING.md`](./PLANNING.md) — full context, design decisions, and v2 plans for a fresh Claude Code session to pick up from.
